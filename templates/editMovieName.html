@@ -1,0 +1,48 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+<body><h1> Edit Movie Name </h1>
+
+<form action="#" method = 'post'>
+
+
+	<p>Name:</p>
+		<input type ='text' size='30' name='name' placeholder = '{{movie.name }}'>
+	<p>Description:</p>
+		<input type ='text' size='30' name='description' placeholder = '{{movie.description}}'>
+	<p>fee:</p>
+		<input type ='text' size='30' name='fee' placeholder = '{{movie.fee}}'>
+
+	{% if course.name == 'BAN' %}
+		<dd><input type ='radio' name='movie' value='BAN'checked >BAN</dd>
+	{%else%}
+	<dd><input type ='radio' name='movie' value='ECE' >BAN</dd>
+    {% endif %}
+
+    {% if course.name == 'F&F' %}
+		<dd><input type ='radio' name='movie' value='F&F'checked >F&F</dd>
+	{%else%}
+	<dd><input type ='radio' name='movie' value='F&F' >F&F</dd>
+    {% endif %}
+
+
+	{% if course.name == 'MIB' %}
+		<dd><input type ='radio' name='movie' value='MIB'checked >MIB</dd>
+	{%else%}
+	<dd><input type ='radio' name='movie' value='MIB' >MIB</dd>
+    {% endif %}
+
+	
+
+<input type='submit' value='Edit'>
+
+
+<a href = '#'> Cancel </a>
+
+
+</form>
+</body>
+</html>
