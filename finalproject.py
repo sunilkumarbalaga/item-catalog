@@ -171,6 +171,8 @@ def getUserID(email):
         return None
 
 # DISCONNECT - Revoke a current user's token and reset their login_session
+
+
 @app.route('/gdisconnect')
 def gdisconnect():
         # Only disconnect a connected user.
@@ -247,9 +249,10 @@ def theatresJSON():
 @app.route('/theatre/')
 def showtheatre():
     session = DBSession()
-    theatre= session.query(Theatre).all()
+    theatre = session.query(Theatre).all()
     session.close()
     return render_template('theatre.html', theatre=theatre)
+
 
 @app.route('/theatre/<int:theatre_id>')
 def theatreinfo(theatre_id):
@@ -312,7 +315,7 @@ def edittheatre(theatre_id):
             session.close()
             return redirect(url_for('showtheatre'))
     else:
-        return render_template('edittheatre.html',theatre=editedtheatre)
+        return render_template('edittheatre.html', theatre=editedtheatre)
 
 
 # Delete a theatre
@@ -361,9 +364,9 @@ def newmovieName(theatre_id):
     theatre = session.query(Theatre).filter_by(id=theatre_id).one()
     if request.method == 'POST':
         newmovie = MovieName(name=request.form['name'],
-                               description=request.form['description'],
-                               fee=request.form['fee'],
-                               theatre_id=theatre_id, user_id=theatre.user_id)
+        description=request.form['description'],
+        fee=request.form['fee'],
+        theatre_id=theatre_id, user_id=theatre.user_id)
         session.add(newmovie)
         session.commit()
         flash('New Movie %s Name Successfully Created' % (newmovie.name))
@@ -381,7 +384,7 @@ def editMovieName(theatre_id, movie_id):
     session = DBSession()
     if 'username' not in login_session:
         return redirect('/login')
-    
+
     editedMovie = session.query(MovieName).filter_by(id=movie_id).one()
     theatre = session.query(Theatre).filter_by(id=theatre_id).one()
     creator = getUserInfo(editedMovie.user_id)
@@ -428,8 +431,8 @@ def deleteMovieName(theatre_id, movie_id):
         session.delete(movieToDelete)
         session.commit()
         flash('Movie Name Successfully Deleted')
-        session.close()        
-	return redirect(url_for('showMovies',theatre_id=theatre_id))
+        session.close()
+    return redirect(url_for('showMovies', theatre_id=theatre_id))
     else:
         return render_template('deleteMovieName.html', movie=movieToDelete)
 
