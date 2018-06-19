@@ -432,7 +432,7 @@ def deleteMovieName(theatre_id, movie_id):
         session.commit()
         flash('Movie Name Successfully Deleted')
         session.close()
-    return redirect(url_for('showMovies', theatre_id=theatre_id))
+        return redirect(url_for('showMovies', theatre_id=theatre_id))
     else:
         return render_template('deleteMovieName.html', movie=movieToDelete)
 
