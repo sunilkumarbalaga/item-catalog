@@ -16,20 +16,20 @@
 	<p>fee:</p>
 		<input type ='text' size='30' name='fee' placeholder = '{{movie.fee}}'>
 
-	{% if course.name == 'BAN' %}
+	{% if movie.name == 'BAN' %}
 		<dd><input type ='radio' name='movie' value='BAN'checked >BAN</dd>
 	{%else%}
 	<dd><input type ='radio' name='movie' value='ECE' >BAN</dd>
     {% endif %}
 
-    {% if course.name == 'F&F' %}
+    {% if movie.name == 'F&F' %}
 		<dd><input type ='radio' name='movie' value='F&F'checked >F&F</dd>
 	{%else%}
 	<dd><input type ='radio' name='movie' value='F&F' >F&F</dd>
     {% endif %}
 
 
-	{% if course.name == 'MIB' %}
+	{% if movie.name == 'MIB' %}
 		<dd><input type ='radio' name='movie' value='MIB'checked >MIB</dd>
 	{%else%}
 	<dd><input type ='radio' name='movie' value='MIB' >MIB</dd>
