@@ -52,6 +52,8 @@ class MovieName(Base):
             'description': self.description,
             'id': self.id,
             'fee': self.fee,
+            'theatre_id':self.theatre_id,
+            'user_id':self.user_id,
         }
 
 
