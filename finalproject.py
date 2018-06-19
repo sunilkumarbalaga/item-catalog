@@ -360,7 +360,7 @@ def newmovieName(theatre_id):
     session = DBSession()
     theatre = session.query(Theatre).filter_by(id=theatre_id).one()
     if request.method == 'POST':
-        newcourse = CourseName(name=request.form['name'],
+        newmovie = MovieName(name=request.form['name'],
                                description=request.form['description'],
                                fee=request.form['fee'],
                                theatre_id=theatre_id, user_id=theatre.user_id)
@@ -378,10 +378,11 @@ def newmovieName(theatre_id):
 @app.route('/theatre/<int:theatre_id>/movie/<int:movie_id>/edit',
            methods=['GET', 'POST'])
 def editMovieName(theatre_id, movie_id):
+    session = DBSession()
     if 'username' not in login_session:
         return redirect('/login')
-    session = DBSession()
-    editedMovie = session.query(MovieName).filter_by(id=Movie_id).one()
+    
+    editedMovie = session.query(MovieName).filter_by(id=movie_id).one()
     theatre = session.query(Theatre).filter_by(id=theatre_id).one()
     creator = getUserInfo(editedMovie.user_id)
     user = getUserInfo(login_session['user_id'])
@@ -411,6 +412,7 @@ def editMovieName(theatre_id, movie_id):
 @app.route('/theatre/<int:theatre_id>/movie/<int:movie_id>/delete',
            methods=['GET', 'POST'])
 def deleteMovieName(theatre_id, movie_id):
+    session = DBSession()
     if 'username' not in login_session:
         return redirect('/login')
     session = DBSession()
@@ -426,8 +428,8 @@ def deleteMovieName(theatre_id, movie_id):
         session.delete(movieToDelete)
         session.commit()
         flash('Movie Name Successfully Deleted')
-        session.close()
-        return redirect(url_for('showMovie',theatre_id=theatre_id))
+        session.close()        
+	return redirect(url_for('showMovies',theatre_id=theatre_id))
     else:
         return render_template('deleteMovieName.html', movie=movieToDelete)
 
