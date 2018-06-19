@@ -115,11 +115,3 @@ session.add(movie3)
 session.commit()
 print "added theatres list"
 
-
-
-
-
-
-
-
-
